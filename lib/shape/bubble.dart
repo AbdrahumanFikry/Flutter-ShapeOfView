@@ -7,7 +7,6 @@ enum BubblePosition { Bottom, Top, Left, Right }
 
 class BubbleShape extends Shape {
   final BubblePosition position;
-
   final double borderRadius;
   final double arrowHeight;
   final double arrowWidth;
@@ -22,11 +21,11 @@ class BubbleShape extends Shape {
       this.arrowPositionPercent = 0.5});
 
   @override
-  Path build({Rect rect, double scale}) {
-    return generatePath(rect: rect);
+  Path build({Rect? rect, double? scale}) {
+    return generatePath(rect: rect!);
   }
 
-  Path generatePath({Rect rect}) {
+  Path generatePath({required Rect rect}) {
     final Path path = new Path();
 
     double topLeftDiameter = max(borderRadius, 0);
@@ -42,7 +41,6 @@ class BubbleShape extends Shape {
         this.position == BubblePosition.Right ? arrowHeight : 0;
     final double spacingBottom =
         this.position == BubblePosition.Bottom ? arrowHeight : 0;
-
     final double left = spacingLeft + rect.left;
     final double top = spacingTop + rect.top;
     final double right = rect.right - spacingRight;

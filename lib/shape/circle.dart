@@ -18,16 +18,19 @@ class CircleShape extends Shape with BorderShape {
   }
 
   @override
-  Path build({Rect rect, double scale}) {
-    return generatePath(rect: rect);
+  Path build({Rect? rect, double? scale}) {
+    return generatePath(rect: rect!);
   }
 
-  Path generatePath({bool useBezier, Rect rect}) {
-    return Path()
-      ..addOval(Rect.fromCircle(
-        center: Offset(rect.width / 2.0, rect.height / 2.0),
-        radius: min(rect.width / 2.0, rect.height / 2.0),
-      ));
+  Path generatePath({bool? useBezier, required Rect? rect}) {
+    if (rect != null)
+      return Path()
+        ..addOval(Rect.fromCircle(
+          center: Offset(rect.width / 2.0, rect.height / 2.0),
+          radius: min(rect.width / 2.0, rect.height / 2.0),
+        ));
+    else
+      return Path();
   }
 
   @override
@@ -42,9 +45,4 @@ class CircleShape extends Shape with BorderShape {
           borderPaint);
     }
   }
-
-
 }
-
-
-
